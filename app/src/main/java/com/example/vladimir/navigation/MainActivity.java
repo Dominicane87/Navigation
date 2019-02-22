@@ -3,6 +3,8 @@ package com.example.vladimir.navigation;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.example.vladimir.navigation.Fragments.EventList;
+import com.example.vladimir.navigation.Fragments.MyProfile;
 
 import javax.inject.Inject;
 
@@ -54,7 +58,6 @@ public class MainActivity extends MvpAppCompatActivity
     }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem  item) {
         // Handle navigation view item clicks here.
@@ -78,8 +81,22 @@ public class MainActivity extends MvpAppCompatActivity
         return true;
     }
 
+
     @Override
     public void eventList() {
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        fragmentClass = EventList.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Вставляем фрагмент, заменяя текущий фрагмент
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.root, fragment).commit();
+
         Toast.makeText(this, "Go to Event list", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -87,6 +104,19 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void notice() {
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        fragmentClass = EventList.class; //TODO Change class
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Вставляем фрагмент, заменяя текущий фрагмент
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.root, fragment).commit();
+
         Toast.makeText(this, "Go to Notice(by Drawer)", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -94,6 +124,19 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void calendar() {
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        fragmentClass = EventList.class; //TODO Change class
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Вставляем фрагмент, заменяя текущий фрагмент
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.root, fragment).commit();
+
         Toast.makeText(this, "Go to calendar", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -101,6 +144,19 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void participation() {
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        fragmentClass = EventList.class; //TODO Change class
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Вставляем фрагмент, заменяя текущий фрагмент
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.root, fragment).commit();
+
         Toast.makeText(this, "Go to participation", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -108,6 +164,18 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void myProfile() {
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        fragmentClass = MyProfile.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Вставляем фрагмент, заменяя текущий фрагмент
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.root, fragment).commit();
         Toast.makeText(this, "Go to My Profile", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -115,6 +183,19 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void myEventList() {
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        fragmentClass = EventList.class; //TODO Change class
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Вставляем фрагмент, заменяя текущий фрагмент
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.root, fragment).commit();
+
         Toast.makeText(this, "Go to My event list", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -122,8 +203,15 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void logOut() {
+
         Toast.makeText(this, "Go to Logout", Toast.LENGTH_SHORT).show();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    protected void onDestroy() {
+        App.get().clearAppComponent();
+        super.onDestroy();
     }
 }

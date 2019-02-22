@@ -4,6 +4,15 @@ import android.app.Application;
 
 public class App extends Application {
     private static AppComponent component;
+    private static App app;
+
+    public static App get(){
+        return app;
+    }
+
+    public App() {
+        app = this;
+    }
 
     public static AppComponent getComponent(){
         return component;
