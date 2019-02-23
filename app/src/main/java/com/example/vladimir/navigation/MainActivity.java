@@ -17,11 +17,14 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.vladimir.navigation.Fragments.EventList;
 import com.example.vladimir.navigation.Fragments.MyProfile;
 
+import javax.inject.Inject;
+
 
 public class MainActivity extends MvpAppCompatActivity
         implements IPresenterNav, NavigationView.OnNavigationItemSelectedListener {
 
     @InjectPresenter
+//            @Inject
     PresenterNav presenterNav;
 
     @Override
@@ -29,7 +32,7 @@ public class MainActivity extends MvpAppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        App.getComponent().inject(this);
+        App.getComponent().inject(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
